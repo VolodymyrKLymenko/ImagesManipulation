@@ -1,0 +1,22 @@
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.deps.json
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.runtimeconfig.json
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.runtimeconfig.dev.json
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.dll
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.pdb
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.csprojResolveAssemblyReference.cache
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.csproj.CoreCompileInputs.cache
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.AssemblyInfoInputs.cache
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.AssemblyInfo.cs
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.dll
+C:\Users\Vova\source\repos\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.pdb
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.deps.json
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.runtimeconfig.json
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.runtimeconfig.dev.json
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.dll
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\bin\Debug\netcoreapp2.0\bmp_images_manipulation.pdb
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.csproj.CoreCompileInputs.cache
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.AssemblyInfoInputs.cache
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.AssemblyInfo.cs
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.dll
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.pdb
+D:\Education\University\4_semester\Images Manipulation\bmp_images_manipulation\bmp_images_manipulation\obj\Debug\netcoreapp2.0\bmp_images_manipulation.csprojResolveAssemblyReference.cache
