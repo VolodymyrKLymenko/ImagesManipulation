@@ -1,0 +1,11 @@
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\bin\Debug\netcoreapp2.0\MaskForImages.deps.json
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\bin\Debug\netcoreapp2.0\MaskForImages.runtimeconfig.json
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\bin\Debug\netcoreapp2.0\MaskForImages.runtimeconfig.dev.json
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\bin\Debug\netcoreapp2.0\MaskForImages.dll
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\bin\Debug\netcoreapp2.0\MaskForImages.pdb
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.csprojResolveAssemblyReference.cache
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.csproj.CoreCompileInputs.cache
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.AssemblyInfoInputs.cache
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.AssemblyInfo.cs
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.dll
+D:\Education\University\4_semester\Images Manipulation\Second Task\MaskForImages\MaskForImages\obj\Debug\netcoreapp2.0\MaskForImages.pdb
