@@ -58,6 +58,9 @@ namespace WpfTask.ViewModel
             }
         }
 
+        private ColorChannel chanel;
+        public ColorChannel Chanel { get { return chanel; } }
+
         private Bitmap ekvalizedBitmap;
 
         private RelayCommand openCmd;
@@ -77,7 +80,7 @@ namespace WpfTask.ViewModel
                         {
                             BitmapImg = new Bitmap(op.FileName);
 
-                            var reHisto = HistogramCalc.GetHistogram(BitmapImg, HistogramCalc.ColorChannel.Red);
+                            var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
                             var values = new ChartValues<ObservableValue>();
 
                             foreach (var item in reHisto)
@@ -134,7 +137,7 @@ namespace WpfTask.ViewModel
                     (ekvalizeCmd = new RelayCommand((obj) =>
                     {
                         ekvalizedBitmap = EcvalizeCalc.equalizing(BitmapImg);
-                        var reHisto = HistogramCalc.GetHistogram(ekvalizedBitmap, HistogramCalc.ColorChannel.Red);
+                        var reHisto = HistogramCalc.CustomGetHistogram(ekvalizedBitmap, Chanel);
 
                         var values = new ChartValues<ObservableValue>();
 
@@ -161,6 +164,31 @@ namespace WpfTask.ViewModel
 
         public ViewModel()
         {
+            chanel = ColorChannel.Green;
+        }
+
+        public void SetChannel(int colorChannel)
+        {
+            switch (colorChannel)
+            {
+                case 0:
+                    {
+                        this.chanel = ColorChannel.Blue;
+                        break;
+                    }
+                case 1:
+                    {
+                        this.chanel = ColorChannel.Green;
+                        break;
+                    }
+                case 2:
+                    {
+                        this.chanel = ColorChannel.Red;
+                        break;
+                    }
+            }
+
+            this.SetNewHisto();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -168,6 +196,25 @@ namespace WpfTask.ViewModel
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void SetNewHisto()
+        {
+            var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
+            var values = new ChartValues<ObservableValue>();
+
+            foreach (var item in reHisto)
+            {
+                values.Add(new ObservableValue(item));
+            }
+
+            TestSeriesCollection = new SeriesCollection
+                            {
+                                new ColumnSeries
+                                {
+                                    Values = values
+                                }
+                            };
         }
     }
 }

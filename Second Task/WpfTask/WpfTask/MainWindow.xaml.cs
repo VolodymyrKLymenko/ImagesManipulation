@@ -33,5 +33,20 @@ namespace WpfTask
 
             DataContext = new ViewModel.ViewModel();
         }
+
+        private void ChooseBlueChanel(object sender, RoutedEventArgs e)
+        {
+            ((ViewModel.ViewModel)DataContext).SetChannel(0);
+        }
+
+        private void ChooseGreenChanel(object sender, RoutedEventArgs e)
+        {
+            ((ViewModel.ViewModel)DataContext).SetChannel(1);
+        }
+
+        private void ChooseRedChanel(object sender, RoutedEventArgs e)
+        {
+            ((ViewModel.ViewModel)DataContext).SetChannel(2);
+        }
     }
 }

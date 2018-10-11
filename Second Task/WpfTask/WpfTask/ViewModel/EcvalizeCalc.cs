@@ -4,11 +4,58 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfTask.CommonExtensions;
 
 namespace WpfTask.ViewModel
 {
     public class EcvalizeCalc
     {
+       /* public static Bitmap EkvilizeBitMao(Bitmap bmp, ColorChannel chanel)
+        {
+            var middleVale = 0.0;
+
+            int[] R = new int[256];
+            byte[] N = new byte[256];
+            byte[] left = new byte[256];
+            byte[] right = new byte[256];
+
+            for (int i = 0; i < N.Length - 1; i++)
+                N[i] = 0;
+
+            var colors = ImageExtension.GetolorMatrix(bmp);
+
+            for (int i = 0; i < colors.Length; i++)
+                for (int j = 0; j < colors[0].Length; j++)
+                {
+                    switch (col)
+                    {
+                        case 0:
+                            {
+                                ++myHistogram[colors[i][j].B];
+                                break;
+                            }
+                        case 1:
+                            {
+                                ++myHistogram[colors[i][j].G];
+                                break;
+                            }
+                        case 2:
+                            {
+                                ++myHistogram[colors[i][j].R];
+                                break;
+                            }
+                        case 3:
+                            {
+                                ++myHistogram[colors[i][j].A];
+                                break;
+                            }
+                        default:
+                            continue;
+                    }
+                }
+
+        }*/
+
         public static Bitmap equalizing(Bitmap bmp)
         {
             Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);

@@ -23,6 +23,23 @@ namespace WpfTask.CommonExtensions
             return colorMatrix;
         }
 
+        public static Color[][] GetolorMatrix(Bitmap bmp)
+        {
+            int hight = bmp.Height;
+            int width = bmp.Width;
+
+            Color[][] colorMatrix = new Color[width][];
+            for (int i = 0; i < width; i++)
+            {
+                colorMatrix[i] = new Color[hight];
+                for (int j = 0; j < hight; j++)
+                {
+                    colorMatrix[i][j] = bmp.GetPixel(i, j);
+                }
+            }
+            return colorMatrix;
+        }
+
         public static void SaveBitmap(Bitmap bitmap, string dist)
         {
             bitmap.Save(dist);

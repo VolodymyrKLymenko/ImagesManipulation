@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonExtensions\CommonEnum.cs" />
     <Compile Include="ViewModel\EcvalizeCalc.cs" />
     <Compile Include="ViewModel\HistogramCalc.cs" />
     <Compile Include="ViewModel\OwnCmd.cs" />
