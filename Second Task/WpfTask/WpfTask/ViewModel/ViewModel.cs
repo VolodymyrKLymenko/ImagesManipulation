@@ -19,6 +19,7 @@ using System.Drawing;
 using LiveCharts.Wpf;
 using LiveCharts.Defaults;
 using WpfTask.CommonExtensions;
+using System.Windows.Media.Imaging;
 
 namespace WpfTask.ViewModel
 {
@@ -54,14 +55,14 @@ namespace WpfTask.ViewModel
             {
                 bitmap = value;
                 OnPropertyChanged("BitmapImg");
-
             }
         }
 
+        private Bitmap resultImg;
+        public Bitmap ResultImg { get { return resultImg; } }
+
         private ColorChannel chanel;
         public ColorChannel Chanel { get { return chanel; } }
-
-        private Bitmap ekvalizedBitmap;
 
         private RelayCommand openCmd;
         public RelayCommand OpenCmd
@@ -117,12 +118,12 @@ namespace WpfTask.ViewModel
 
                         if (fileDialog.ShowDialog() == true)
                         {
-                            ImageExtension.SaveBitmap(ekvalizedBitmap, fileDialog.FileName);
+                            ImageExtension.SaveBitmap(resultImg, fileDialog.FileName);
                         }
                     },
                         (obj) =>
                         {
-                            return ekvalizedBitmap != null;
+                            return BitmapImg != null;
                         })
                     );
             }
@@ -136,8 +137,8 @@ namespace WpfTask.ViewModel
                 return ekvalizeCmd ??
                     (ekvalizeCmd = new RelayCommand((obj) =>
                     {
-                        ekvalizedBitmap = EcvalizeCalc.equalizing(BitmapImg);
-                        var reHisto = HistogramCalc.CustomGetHistogram(ekvalizedBitmap, Chanel);
+                        resultImg = EcvalizeCalc.equalizing(BitmapImg);
+                        var reHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
 
                         var values = new ChartValues<ObservableValue>();
 
