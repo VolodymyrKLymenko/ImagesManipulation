@@ -20,6 +20,7 @@ using LiveCharts.Wpf;
 using LiveCharts.Defaults;
 using WpfTask.CommonExtensions;
 using System.Windows.Media.Imaging;
+using System.Drawing.Imaging;
 
 namespace WpfTask.ViewModel
 {
@@ -58,11 +59,29 @@ namespace WpfTask.ViewModel
             }
         }
 
-        private Bitmap resultImg;
-        public Bitmap ResultImg { get { return resultImg; } }
+        public Bitmap ResultImg { get; set; }
 
         private ColorChannel chanel;
-        public ColorChannel Chanel { get { return chanel; } }
+        public ColorChannel Chanel
+        {
+            get
+            {
+                return chanel;
+            }
+           
+            set
+            {
+                chanel = value;
+                OnPropertyChanged("Chanel");
+                OnPropertyChanged("IsRedSelected");
+                OnPropertyChanged("IsGreenSelected");
+                OnPropertyChanged("IsBlueSelected");
+            }
+        }
+
+        public bool IsRedSelected { get { return Chanel == ColorChannel.Red; } }
+        public bool IsGreenSelected { get { return Chanel == ColorChannel.Green; } }
+        public bool IsBlueSelected { get { return Chanel == ColorChannel.Blue; } }
 
         private RelayCommand openCmd;
         public RelayCommand OpenCmd
@@ -118,7 +137,7 @@ namespace WpfTask.ViewModel
 
                         if (fileDialog.ShowDialog() == true)
                         {
-                            ImageExtension.SaveBitmap(resultImg, fileDialog.FileName);
+                            ImageExtension.SaveBitmap(ResultImg, fileDialog.FileName);
                         }
                     },
                         (obj) =>
@@ -137,7 +156,15 @@ namespace WpfTask.ViewModel
                 return ekvalizeCmd ??
                     (ekvalizeCmd = new RelayCommand((obj) =>
                     {
-                        resultImg = EcvalizeCalc.equalizing(BitmapImg);
+                        ResultImg = EcvalizeCalc.equalizing(BitmapImg);
+
+                        var tempBmp = new Bitmap(ResultImg);
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            tempBmp.Save(stream, ImageFormat.Jpeg);
+                            ResultImg = new Bitmap(stream);
+                        }
+
                         var reHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
 
                         var values = new ChartValues<ObservableValue>();
@@ -174,17 +201,17 @@ namespace WpfTask.ViewModel
             {
                 case 0:
                     {
-                        this.chanel = ColorChannel.Blue;
+                        this.Chanel = ColorChannel.Red;
                         break;
                     }
                 case 1:
                     {
-                        this.chanel = ColorChannel.Green;
+                        this.Chanel = ColorChannel.Green;
                         break;
                     }
                 case 2:
                     {
-                        this.chanel = ColorChannel.Red;
+                        this.Chanel = ColorChannel.Blue;
                         break;
                     }
             }
@@ -201,21 +228,44 @@ namespace WpfTask.ViewModel
 
         private void SetNewHisto()
         {
-            var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
-            var values = new ChartValues<ObservableValue>();
-
-            foreach (var item in reHisto)
+            if (BitmapImg != null)
             {
-                values.Add(new ObservableValue(item));
-            }
+                var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
+                var values = new ChartValues<ObservableValue>();
 
-            TestSeriesCollection = new SeriesCollection
+                foreach (var item in reHisto)
+                {
+                    values.Add(new ObservableValue(item));
+                }
+
+                TestSeriesCollection = new SeriesCollection
                             {
                                 new ColumnSeries
                                 {
                                     Values = values
                                 }
                             };
+            }
+
+            if (ResultImg != null)
+            {
+                var resWorkHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
+
+                var workValues = new ChartValues<ObservableValue>();
+
+                foreach (var item in resWorkHisto)
+                {
+                    workValues.Add(new ObservableValue(item));
+                }
+
+                WorkCollection = new SeriesCollection
+                            {
+                                new ColumnSeries
+                                {
+                                    Values = workValues
+                                }
+                            };
+            }
         }
     }
 }

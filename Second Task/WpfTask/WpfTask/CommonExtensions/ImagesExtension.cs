@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -44,7 +45,9 @@ namespace WpfTask.CommonExtensions
 
         public static void SaveBitmap(Bitmap bitmap, string dist)
         {
-            bitmap.Save(dist);
+            var bmp = new Bitmap(bitmap);
+
+            bmp.Save(dist);
         }
 
         public static Bitmap GetBitmap(Color[][] colors)

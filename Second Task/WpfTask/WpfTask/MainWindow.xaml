@@ -20,9 +20,9 @@
                 <MenuItem Header="Save"  Command="{Binding SaveCmd}" Background="White" FontSize="20"></MenuItem>
             </MenuItem>
             <MenuItem Header="Chanel" Background="White" FontSize="20" Margin="0,0,7,0" BorderBrush="Black">
-                <MenuItem Header="RED" Click="ChooseBlueChanel"  Background="White" FontSize="20"></MenuItem>
-                <MenuItem Header="GREEN" Click="ChooseGreenChanel" Background="White" FontSize="20"></MenuItem>
-                <MenuItem Header="BLUE" Click="ChooseRedChanel" Background="White" FontSize="20"></MenuItem>
+                <MenuItem Header="RED" Click="ChooseBlueChanel"  Background="White" IsCheckable="True" IsChecked="{Binding IsRedSelected, Mode=OneWay}" FontSize="20"></MenuItem>
+                <MenuItem Header="GREEN" Click="ChooseGreenChanel" Background="White" IsCheckable="True" IsChecked="{Binding IsGreenSelected, Mode=OneWay}" FontSize="20"></MenuItem>
+                <MenuItem Header="BLUE" Click="ChooseRedChanel" Background="White" IsCheckable="True" IsChecked="{Binding IsBlueSelected, Mode=OneWay}" FontSize="20"></MenuItem>
             </MenuItem>
             <MenuItem Header="Ekvalize"  Command="{Binding EkvalizeCmd}" Background="White" FontSize="20"></MenuItem>
         </Menu>

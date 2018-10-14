@@ -56,8 +56,10 @@ namespace WpfTask.ViewModel
 
         }*/
 
-        public static Bitmap equalizing(Bitmap bmp)
+        public static Bitmap equalizing(Bitmap bitmap)
         {
+            Bitmap bmp = new Bitmap(bitmap);
+
             Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
             System.Drawing.Imaging.BitmapData bmpData = bmp.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, bmp.PixelFormat);
             IntPtr ptr = bmpData.Scan0;
