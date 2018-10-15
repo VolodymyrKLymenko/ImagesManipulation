@@ -64,3 +64,9 @@ D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second
 D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\obj\Debug\WpfTask.csproj.CopyComplete
 D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\obj\Debug\WpfTask.exe
 D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\obj\Debug\WpfTask.pdb
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\bin\Debug\LoadingIndicators.WPF.dll
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\bin\Debug\LoadingIndicators.WPF.pdb
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\bin\Debug\LoadingIndicatorsDemo.exe
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\bin\Debug\LoadingIndicatorsDemo.pdb
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\bin\Debug\LoadingIndicatorsDemo.exe.config
+D:\Education\University\4_semester\Images Manipulation\ImagesManipulation\Second Task\WpfTask\WpfTask\obj\Debug\App.baml

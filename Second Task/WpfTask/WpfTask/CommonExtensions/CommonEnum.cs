@@ -11,6 +11,7 @@ namespace WpfTask
             Blue,
             Green,
             Red,
-            Alpha
+            Alpha,
+            All
         }
 }
