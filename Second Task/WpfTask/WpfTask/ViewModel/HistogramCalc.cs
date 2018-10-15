@@ -11,9 +11,9 @@ namespace WpfTask.ViewModel
 {
     public class HistogramCalc
     {
-        public static long[] CustomGetHistogram(Bitmap bmp, ColorChannel colorChannel)
+        public static int[] GetHistogram(Bitmap bmp, ColorChannel colorChannel)
         {
-            long[] myHistogram = new long[256];
+            int[] myHistogram = new int[256];
             for (int i = 0; i < myHistogram.Length; i++)
                 myHistogram[i] = 0;
 
@@ -50,55 +50,6 @@ namespace WpfTask.ViewModel
                     }
                 }
 
-            return myHistogram;
-        }
-
-        public static long[] GetHistogram(Bitmap b, ColorChannel colorChannel)
-        {
-            long[] myHistogram = new long[256];
-            BitmapData bmData = null;
-
-            int col = (int)colorChannel;
-
-            try
-            {
-                //Lock it fixed with 24bpp
-                bmData = b.LockBits(new Rectangle(0, 0, b.Width, b.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-                int scanline = bmData.Stride;
-                System.IntPtr Scan0 = bmData.Scan0;
-                unsafe
-                {
-                    byte* p = (byte*)(void*)Scan0;
-                    int nWidth = b.Width;
-                    int nHeight = b.Height;
-                    for (int y = 0; y < nHeight; y++)
-                    {
-                        if (y == 192)
-                            break;
-                        for (int x = 0; x < nWidth; x++)
-                        {
-                                long Temp = 0;
-                                Temp += p[col];
-
-                                myHistogram[Temp]++;
-                                //we do not need to use any offset, we always can increment by pixelsize when
-                                //locking in 32bppArgb - mode
-                                p += 4;
-                        }
-                    }
-                }
-                b.UnlockBits(bmData);
-            }
-            catch
-            {
-                try
-                {
-                    b.UnlockBits(bmData);
-                }
-                catch
-                {
-                }
-            }
             return myHistogram;
         }
     }

@@ -8,53 +8,67 @@ using WpfTask.CommonExtensions;
 
 namespace WpfTask.ViewModel
 {
-    public class EcvalizeCalc
+    public static class EcvalizeCalc
     {
-       /* public static Bitmap EkvilizeBitMao(Bitmap bmp, ColorChannel chanel)
+        private const int CountColors = 256;
+
+        public static Bitmap EkvilizeCustom(Bitmap bmp, int[] histogramValues, ColorChannel chanel)
         {
-            var middleVale = 0.0;
+            Bitmap resultBmp = new Bitmap(bmp);
 
-            int[] R = new int[256];
-            byte[] N = new byte[256];
-            byte[] left = new byte[256];
-            byte[] right = new byte[256];
+            int[] cdf = new int[histogramValues.Length];
+            int cdfMin = 0;
 
-            for (int i = 0; i < N.Length - 1; i++)
-                N[i] = 0;
+            for (int i = 0; i < histogramValues.Length; i++)
+            {
+                cdf[i] = (i == 0) ? 0 : cdf[i - 1];
+                cdf[i] += histogramValues[i];
 
-            var colors = ImageExtension.GetolorMatrix(bmp);
+                if (cdf[i] > 0 && (cdfMin == 0 || cdf[i] < cdfMin))
+                    cdfMin = cdf[i];
+            }
+
+            Color[][] colors = ImageExtension.GetolorMatrix(bmp);
+            int countPixels = colors.Length * colors[0].Length;
 
             for (int i = 0; i < colors.Length; i++)
-                for (int j = 0; j < colors[0].Length; j++)
+            {
+                for (int j = 0; j < colors[i].Length; j++)
                 {
-                    switch (col)
+                    byte R = colors[i][j].R;
+                    byte G = colors[i][j].G;
+                    byte B = colors[i][j].B;
+
+                    switch (chanel)
                     {
-                        case 0:
+                        case ColorChannel.Blue:
                             {
-                                ++myHistogram[colors[i][j].B];
+                                B = (byte)((int)((((double)(cdf[colors[i][j].B] - cdfMin))/((double)countPixels))
+                                    *((double)(CountColors -1))));
                                 break;
                             }
-                        case 1:
+                        case ColorChannel.Green:
                             {
-                                ++myHistogram[colors[i][j].G];
+                                G = (byte)((int)((((double)(cdf[colors[i][j].G] - cdfMin)) / ((double)countPixels))
+                                    * ((double)(CountColors - 1))));
                                 break;
                             }
-                        case 2:
+                        case ColorChannel.Red:
                             {
-                                ++myHistogram[colors[i][j].R];
-                                break;
-                            }
-                        case 3:
-                            {
-                                ++myHistogram[colors[i][j].A];
+                                R = (byte)((int)((((double)(cdf[colors[i][j].R] - cdfMin)) / ((double)countPixels))
+                                    * ((double)(CountColors - 1))));
                                 break;
                             }
                         default:
-                            continue;
+                            break;
                     }
-                }
 
-        }*/
+                    resultBmp.SetPixel(i, j, Color.FromArgb(colors[i][j].A, R, G, B));
+                }
+            }
+
+            return resultBmp;
+        }
 
         public static Bitmap equalizing(Bitmap bitmap)
         {

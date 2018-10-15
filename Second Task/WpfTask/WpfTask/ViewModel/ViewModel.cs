@@ -107,7 +107,7 @@ namespace WpfTask.ViewModel
 
                             MaskApplier.ApplyMaskForAllChanales(BitmapImg, MaskApplier.forTest).Save("testMaskAll.jpeg");
 
-                            var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
+                            var reHisto = HistogramCalc.GetHistogram(BitmapImg, Chanel);
 
                             foreach (var item in reHisto)
                             {
@@ -164,7 +164,18 @@ namespace WpfTask.ViewModel
                     {
                         var values = new ChartValues<ObservableValue>();
 
-                        ResultImg = EcvalizeCalc.equalizing(BitmapImg);
+                        ResultImg = EcvalizeCalc.EkvilizeCustom(
+                            BitmapImg,
+                            HistogramCalc.GetHistogram(BitmapImg, ColorChannel.Blue),
+                            ColorChannel.Blue);
+                        ResultImg = EcvalizeCalc.EkvilizeCustom(
+                            ResultImg,
+                            HistogramCalc.GetHistogram(ResultImg, ColorChannel.Green),
+                            ColorChannel.Green);
+                        ResultImg = EcvalizeCalc.EkvilizeCustom(
+                            ResultImg,
+                            HistogramCalc.GetHistogram(ResultImg, ColorChannel.Red),
+                            ColorChannel.Red);
 
                         var tempBmp = new Bitmap(ResultImg);
                         using (MemoryStream stream = new MemoryStream())
@@ -173,7 +184,7 @@ namespace WpfTask.ViewModel
                             ResultImg = new Bitmap(stream);
                         }
 
-                        var reHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
+                        var reHisto = HistogramCalc.GetHistogram(ResultImg, Chanel);
                         values = new ChartValues<ObservableValue>();
                         foreach (var item in reHisto)
                         {
@@ -260,7 +271,7 @@ namespace WpfTask.ViewModel
             else
                 ResultImg = MaskApplier.ApplyMask(BitmapImg, mask, Chanel);
 
-            var reHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
+            var reHisto = HistogramCalc.GetHistogram(ResultImg, Chanel);
 
             var values = new ChartValues<ObservableValue>();
 
@@ -289,7 +300,7 @@ namespace WpfTask.ViewModel
         {
                 if (BitmapImg != null)
                 {
-                    var reHisto = HistogramCalc.CustomGetHistogram(BitmapImg, Chanel);
+                    var reHisto = HistogramCalc.GetHistogram(BitmapImg, Chanel);
                     var values = new ChartValues<ObservableValue>();
 
                     foreach (var item in reHisto)
@@ -307,7 +318,7 @@ namespace WpfTask.ViewModel
         {
                 if (ResultImg != null)
                 {
-                    var resWorkHisto = HistogramCalc.CustomGetHistogram(ResultImg, Chanel);
+                    var resWorkHisto = HistogramCalc.GetHistogram(ResultImg, Chanel);
 
                     var workValues = new ChartValues<ObservableValue>();
 
