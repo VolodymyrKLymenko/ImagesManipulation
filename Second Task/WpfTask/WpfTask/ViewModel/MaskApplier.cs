@@ -77,7 +77,6 @@ namespace WpfTask.ViewModel
             return resBmp;
         }
 
-
         public static Bitmap ApplyMask(Bitmap img, double[][] mask, ColorChannel colorChannel)
         {
             Bitmap resBmp = new Bitmap(img);

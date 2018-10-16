@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
@@ -264,12 +263,47 @@ namespace WpfTask.ViewModel
             }
         }
 
-        public void ApplyMask(double[][] mask)
+        public void ApplyMask(double[][] maskH, double[][] maskV)
         {
-            if(chanel == ColorChannel.All)
-                ResultImg = MaskApplier.ApplyMaskForAllChanales(BitmapImg, mask);
+            Color[][] colorsH = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskH));
+            Color[][] colorsV = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskV));
+            ResultImg = new Bitmap(BitmapImg);
+
+            if (chanel == ColorChannel.All)
+            {
+                for (int i = 0; i < colorsH.Length; i++)
+                {
+                    for (int j = 0; j < colorsH[0].Length; j++)
+                    {
+                        var r = Math.Sqrt((colorsH[i][j].R * colorsH[i][j].R) + (colorsV[i][j].R * colorsV[i][j].R));
+                        var g = Math.Sqrt((colorsH[i][j].G * colorsH[i][j].G) + (colorsV[i][j].G * colorsV[i][j].G));
+                        var b = Math.Sqrt((colorsH[i][j].B * colorsH[i][j].B) + (colorsV[i][j].B * colorsV[i][j].B));
+
+                        ResultImg.SetPixel(i, j, Color.FromArgb(255, (byte)r, (byte)g, (byte)b));
+                    }
+                }
+            }
             else
-                ResultImg = MaskApplier.ApplyMask(BitmapImg, mask, Chanel);
+            {
+                var initialColors = ImageExtension.GetolorMatrix(BitmapImg);
+                for (int i = 0; i < colorsH.Length; i++)
+                {
+                    for (int j = 0; j < colorsH[0].Length; j++)
+                    {
+                        var r = (chanel == ColorChannel.Red)
+                            ? Math.Sqrt((colorsH[i][j].R * colorsH[i][j].R) + (colorsV[i][j].R * colorsV[i][j].R))
+                            : initialColors[i][j].R;
+                        var g = (chanel == ColorChannel.Green)
+                            ? Math.Sqrt((colorsH[i][j].G * colorsH[i][j].G) + (colorsV[i][j].G * colorsV[i][j].G))
+                            : initialColors[i][j].G;
+                        var b = (chanel == ColorChannel.Blue)
+                            ? Math.Sqrt((colorsH[i][j].B * colorsH[i][j].B) + (colorsV[i][j].B * colorsV[i][j].B))
+                            : initialColors[i][j].B;
+
+                        ResultImg.SetPixel(i, j, Color.FromArgb(255, (byte)r, (byte)g, (byte)b));
+                    }
+                }
+            }
 
             var reHisto = HistogramCalc.GetHistogram(ResultImg, Chanel);
 

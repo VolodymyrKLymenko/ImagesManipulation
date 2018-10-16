@@ -54,36 +54,48 @@ namespace WpfTask
             ((ViewModel.ViewModel)DataContext).SetChannel(4);
         }
 
-        private void SobelVerticalMask(object sender, RoutedEventArgs e)
+        //private void SobelVerticalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.sobelMaskVertical);
+        //}
+        //private void SobelHorizontalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.sobelMaskHorizontal);
+        //}
+        private void SobelMask(object sender, RoutedEventArgs e)
         {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.sobelMaskVertical);
-        }
-        private void SobelHorizontalMask(object sender, RoutedEventArgs e)
-        {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.sobelMaskHorizontal);
-        }
-
-        private void PrivetVerticalMask(object sender, RoutedEventArgs e)
-        {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.privetMaskVertical);
-        }
-        private void PrivetHorizontalMask(object sender, RoutedEventArgs e)
-        {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.privetMaskHorizontal);
+            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.sobelMaskHorizontal, MaskApplier.sobelMaskVertical);
         }
 
-        private void RobertsVerticalMask(object sender, RoutedEventArgs e)
+        //private void PrivetVerticalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.privetMaskVertical);
+        //}
+        //private void PrivetHorizontalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.privetMaskHorizontal);
+        //}
+        private void PrivetMask(object sender, RoutedEventArgs e)
         {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskVertical);
-        }
-        private void RobertsHorizontalMask(object sender, RoutedEventArgs e)
-        {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskHorizontal);
+            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.privetMaskHorizontal, MaskApplier.privetMaskVertical);
         }
 
-        private void BlurringMask(object sender, RoutedEventArgs e)
+        //private void RobertsVerticalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskVertical);
+        //}
+        //private void RobertsHorizontalMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskHorizontal);
+        //}
+        private void RobertsMask(object sender, RoutedEventArgs e)
         {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.forTest);
+            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskHorizontal, MaskApplier.robertsMaskVertical);
         }
+
+        //private void BlurringMask(object sender, RoutedEventArgs e)
+        //{
+        //    ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.forTest);
+        //}
     }
 }

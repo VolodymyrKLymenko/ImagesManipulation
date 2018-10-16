@@ -38,19 +38,9 @@
             </MenuItem>
             <MenuItem Header="Ekvalize"  Command="{Binding EkvalizeCmd}" Margin="0,0,7,0"  Background="White" FontSize="20"></MenuItem>
             <MenuItem Header="Mask" Background="White" FontSize="20" Margin="0,0,7,0" BorderBrush="Black">
-                <MenuItem Header="Sobel" Background="White" FontSize="20">
-                    <MenuItem Header="Vertical" Click="SobelVerticalMask"  Background="White" FontSize="20"></MenuItem>
-                    <MenuItem Header="Horizontal" Click="SobelHorizontalMask"  Background="White" FontSize="20"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Privet" Background="White" FontSize="20">
-                    <MenuItem Header="Vertical" Click="PrivetVerticalMask"  Background="White" FontSize="20"></MenuItem>
-                    <MenuItem Header="Horizontal" Click="PrivetHorizontalMask"  Background="White" FontSize="20"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Roberts" Background="White" FontSize="20">
-                    <MenuItem Header="Vertical" Click="RobertsVerticalMask"  Background="White" FontSize="20"></MenuItem>
-                    <MenuItem Header="Horizontal" Click="RobertsHorizontalMask"  Background="White" FontSize="20"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Blurring" Click="BlurringMask"  Background="White" FontSize="20"></MenuItem>
+                <MenuItem Header="Sobel" Click="SobelMask" Background="White" FontSize="20"></MenuItem>
+                <MenuItem Header="Privet" Click="PrivetMask" Background="White" FontSize="20"></MenuItem>
+                <MenuItem Header="Roberts" Click="RobertsMask" Background="White" FontSize="20"></MenuItem>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1">
