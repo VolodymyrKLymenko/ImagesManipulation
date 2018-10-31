@@ -54,22 +54,48 @@ namespace WpfTask.ViewModel
             new double[] { ((double)1)/((double)9), ((double)1) / ((double)9), ((double)1)/((double)9) },
         };
 
-        public static Bitmap ApplyMaskForAllChanales(Bitmap img, double[][] mask)
+        public static Bitmap ApplyMaskForAllChanales(Bitmap img, double[][] mask, int treshe = 0)
         {
             Bitmap resBmp = new Bitmap(img);
             var colors = ImageExtension.GetolorMatrix(img);
+            int r_tr = 0;
+            int g_tr = 0;
+            int b_tr = 0;
+
+            for (int i = 0; i < colors.Length; i++)
+            {
+                for (int j = 0; j < colors[0].Length; j++)
+                {
+                    if (colors[i][j].R > r_tr) { r_tr = colors[i][j].R; }
+                    if (colors[i][j].G > g_tr) { g_tr = colors[i][j].G; }
+                    if (colors[i][j].B > b_tr) { b_tr = colors[i][j].B; }
+                }
+            }
+
+            r_tr /= 2;
+            g_tr /= 2;
+            b_tr /= 2;
+
+            if (treshe != 0)
+            {
+                r_tr = treshe;
+                g_tr = treshe;
+                b_tr = treshe;
+            }
 
             for (int i = 0; i < colors.Length; i++)
                 for (int j = 0; j < colors[0].Length; j++)
                 {
                     var itemMatrix = getItemMatrix(i, j, colors, mask.Length);
-                    var newRValue = ItemCalculation(itemMatrix, mask, ColorChannel.Red);
+                    var newRValue = ItemCalculation(itemMatrix, mask, r_tr, ColorChannel.Red);
                     var bval = (byte)newRValue;
-                    var newGValue = (byte)ItemCalculation(itemMatrix, mask, ColorChannel.Green);
-                    var newBValue = (byte)ItemCalculation(itemMatrix, mask, ColorChannel.Blue);
+                    var newGValue = (byte)ItemCalculation(itemMatrix, mask, g_tr, ColorChannel.Green);
+                    var newBValue = (byte)ItemCalculation(itemMatrix, mask, b_tr, ColorChannel.Blue);
+
+                    var newVal = (newRValue > 0 || newGValue > 0 || newBValue > 0) ? 255 : 0;
 
                     Color newColor;
-                    newColor = Color.FromArgb(colors[i][j].A, (byte)newRValue, newGValue, newBValue);
+                    newColor = Color.FromArgb(colors[i][j].A, (byte)newVal, newVal, newVal);
 
                     resBmp.SetPixel(i, j, newColor);
                 }
@@ -77,18 +103,36 @@ namespace WpfTask.ViewModel
             return resBmp;
         }
 
-        public static Bitmap ApplyMask(Bitmap img, double[][] mask, ColorChannel colorChannel)
+        public static Bitmap ApplyMask(Bitmap img, double[][] mask, ColorChannel colorChannel, int treshe = 0)
         {
             Bitmap resBmp = new Bitmap(img);
 
             var col = (int)colorChannel;
             var colors = ImageExtension.GetolorMatrix(img);
+            int r_tr = 0;
+            int g_tr = 0;
+            int b_tr = 0;
+
+            for (int _i = 0; _i < colors.Length; _i++)
+            {
+                for (int _j = 0; _j < colors[0].Length; _j++)
+                {
+                    if (colors[_i][_j].R > r_tr) { r_tr = colors[_i][_j].R; }
+                    if (colors[_i][_j].G > g_tr) { g_tr = colors[_i][_j].G; }
+                    if (colors[_i][_j].B > b_tr) { b_tr = colors[_i][_j].B; }
+                }
+            }
+
+            r_tr /= 2;
+            g_tr /= 2;
+            b_tr /= 2;
+            int tr = (treshe != 0) ? treshe : (r_tr + g_tr + b_tr) / 3;
 
             for (int i = 0; i < colors.Length; i++)
                 for (int j = 0; j < colors[0].Length; j++)
                 {
                     var itemMatrix = getItemMatrix(i, j, colors, mask.Length);
-                    var newValue = (byte)ItemCalculation(itemMatrix, mask, colorChannel);
+                    var newValue = (byte)ItemCalculation(itemMatrix, mask, treshe, colorChannel);
 
                     Color newColor;
 
@@ -153,7 +197,7 @@ namespace WpfTask.ViewModel
             return res;
         }
 
-        private static double ItemCalculation(Color[][] itemMatrix, double[][] mask, ColorChannel channel)
+        private static double ItemCalculation(Color[][] itemMatrix, double[][] mask, int treshe, ColorChannel channel)
         {
             switch ((int)channel)
             {
@@ -168,7 +212,7 @@ namespace WpfTask.ViewModel
                                 res += ((double)itemMatrix[i][j].B) * mask[j][i];
                             }
                         }
-                        return res;
+                        return res > treshe ? 255 : 0;
                     }
                 // green
                 case 1:
@@ -181,7 +225,7 @@ namespace WpfTask.ViewModel
                                 res += ((double)itemMatrix[i][j].G) * mask[j][i];
                             }
                         }
-                        return res;
+                        return res > treshe ? 255 : 0;
                     }
                 // red
                 case 2:
@@ -194,7 +238,7 @@ namespace WpfTask.ViewModel
                                 res += itemMatrix[i][j].R * mask[j][i];
                             }
                         }
-                        return res;
+                        return res > treshe ? 255 : 0;
                     }
                 default:
                     {

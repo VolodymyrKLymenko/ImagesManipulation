@@ -104,8 +104,6 @@ namespace WpfTask.ViewModel
                         {
                             BitmapImg = new Bitmap(op.FileName);
 
-                            MaskApplier.ApplyMaskForAllChanales(BitmapImg, MaskApplier.forTest).Save("testMaskAll.jpeg");
-
                             var reHisto = HistogramCalc.GetHistogram(BitmapImg, Chanel);
 
                             foreach (var item in reHisto)
@@ -263,10 +261,10 @@ namespace WpfTask.ViewModel
             }
         }
 
-        public void ApplyMask(double[][] maskH, double[][] maskV)
+        public void ApplyMask(double[][] maskH, double[][] maskV, int treshe = 0)
         {
-            Color[][] colorsH = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskH));
-            Color[][] colorsV = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskV));
+            Color[][] colorsH = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskH, treshe));
+            Color[][] colorsV = ImageExtension.GetolorMatrix(MaskApplier.ApplyMaskForAllChanales(BitmapImg, maskV, treshe));
             ResultImg = new Bitmap(BitmapImg);
 
             if (chanel == ColorChannel.All)

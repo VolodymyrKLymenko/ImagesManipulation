@@ -90,7 +90,7 @@ namespace WpfTask
         //}
         private void RobertsMask(object sender, RoutedEventArgs e)
         {
-            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskHorizontal, MaskApplier.robertsMaskVertical);
+            ((ViewModel.ViewModel)DataContext).ApplyMask(MaskApplier.robertsMaskHorizontal, MaskApplier.robertsMaskVertical, 30);
         }
 
         //private void BlurringMask(object sender, RoutedEventArgs e)
