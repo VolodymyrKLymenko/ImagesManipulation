@@ -47,13 +47,6 @@ namespace WpfTask.ViewModel
             new double[] { 0,  1 }
         };
 
-        public static double[][] forTest =
-        {
-            new double[] { ((double)1)/((double)9), ((double)1) / ((double)9), ((double)1)/((double)9) },
-            new double[] { ((double)1)/((double)9), ((double)1) / ((double)9), ((double)1)/((double)9) },
-            new double[] { ((double)1)/((double)9), ((double)1) / ((double)9), ((double)1)/((double)9) },
-        };
-
         public static Bitmap ApplyMaskForAllChanales(Bitmap img, double[][] mask, int treshe = 0)
         {
             Bitmap resBmp = new Bitmap(img);
@@ -199,6 +192,8 @@ namespace WpfTask.ViewModel
 
         private static double ItemCalculation(Color[][] itemMatrix, double[][] mask, int treshe, ColorChannel channel)
         {
+            treshe -= 10;
+
             switch ((int)channel)
             {
                 //blue
